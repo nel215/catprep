@@ -14,3 +14,9 @@ class PointwiseFiller(object):
                 row = [key[0], value[target].mean()]
                 rows.append(row)
             self.means[column] = pd.DataFrame(rows, columns=[column, '{}_mean'.format(column)])
+
+    def transform(self, df):
+        transformed_df = df
+        for column, mean_df in self.means.items():
+            transformed_df = pd.merge(transformed_df, mean_df, on=column)
+        return transformed_df
