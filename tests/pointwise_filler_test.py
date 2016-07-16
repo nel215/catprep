@@ -13,7 +13,7 @@ def test_fit():
     filler = catprep.PointwiseFiller()
     filler.fit(df, columns=['x1', 'x2'], target='y')
 
-    assert filler.means['x1']['column'].tolist() == ['A']
-    assert np.abs(filler.means['x1']['mean'].values - [2. / 3.]) < 1e-9
-    assert filler.means['x2']['column'].tolist() == ['a', 'b']
-    assert np.all(np.abs(filler.means['x2']['mean'].values - [0., 1.]) < [1e-9, 1e-9])
+    assert filler.means['x1']['x1'].tolist() == ['A']
+    assert np.abs(filler.means['x1']['x1_mean'].values - [2. / 3.]) < 1e-9
+    assert filler.means['x2']['x2'].tolist() == ['a', 'b']
+    assert np.all(np.abs(filler.means['x2']['x2_mean'].values - [0., 1.]) < [1e-9, 1e-9])
