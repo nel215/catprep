@@ -6,7 +6,7 @@ from setuptools import setup, find_packages
 setup(
     name='catprep',
     description='A preprocessing library for categorical variables',
-    version='0.0.1',
+    version='0.0.2',
     author='nel215',
     author_email='otomo.yuhei@gmail.com',
     url='https://github.com/nel215/catprep',
