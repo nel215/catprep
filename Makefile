@@ -1,2 +1,2 @@
 test:
-	PYTHONPATH=. py.test --capture=sys tests/*_test.py
+	PYTHONPATH=. py.test tests/*_test.py
