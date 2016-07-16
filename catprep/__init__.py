@@ -13,4 +13,4 @@ class PointwiseFiller(object):
             for key, value in df.groupby(column):
                 row = [key[0], value[target].mean()]
                 rows.append(row)
-            self.means[column] = pd.DataFrame(rows, columns=['column', 'mean'])
+            self.means[column] = pd.DataFrame(rows, columns=[column, '{}_mean'.format(column)])
