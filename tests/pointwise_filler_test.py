@@ -17,3 +17,17 @@ def test_fit():
     assert np.abs(filler.means['x1']['x1_mean'].values - [2. / 3.]) < 1e-9
     assert filler.means['x2']['x2'].tolist() == ['a', 'b']
     assert np.all(np.abs(filler.means['x2']['x2_mean'].values - [0., 1.]) < [1e-9, 1e-9])
+
+
+def test_transform():
+    df = pd.DataFrame([
+        ['A', 'a', 0],
+        ['A', 'b', 1],
+        ['A', 'b', 1],
+    ], columns=['x1', 'x2', 'y'])
+    filler = catprep.PointwiseFiller()
+    filler.fit(df, columns=['x1', 'x2'], target='y')
+
+    df = filler.transform(df)
+    assert np.sum(np.abs(df['x1_mean'].values - [2./3., 2./3., 2./3.])) < 1e-9
+    assert np.sum(np.abs(df['x2_mean'].values - [0., 1., 1.])) < 1e-9
