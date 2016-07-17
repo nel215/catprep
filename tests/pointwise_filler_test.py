@@ -21,3 +21,19 @@ def test_fit_and_transform():
     transformed_df = filler.transform(df)
     assert np.sum(np.abs(transformed_df['x1_mean'].values - [2./3., 2./3., 2./3.])) < 1e-9
     assert np.sum(np.abs(transformed_df['x2_mean'].values - [0., 1., 1.])) < 1e-9
+
+
+def test_transform_with_never_seen_value():
+    df = pd.DataFrame([
+        ['AA', 'a', 0],
+        ['AA', 'b', 1],
+        ['AA', 'b', 1],
+    ], columns=['x1', 'x2', 'y'])
+    filler = catprep.PointwiseFiller()
+    filler.fit(df, columns=['x1', 'x2'], target='y')
+
+    test_df = pd.DataFrame([
+        ['BB', 'c', 0],
+    ], columns=['x1', 'x2', 'y'])
+    test_df = filler.transform(test_df)
+    assert np.all(test_df['x1_mean'].isnull() == [True])

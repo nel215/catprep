@@ -19,7 +19,7 @@ class PointwiseFiller(object):
     def transform(self, df):
         transformed_df = df
         for column, mean_df in self.means.items():
-            transformed_df = pd.merge(transformed_df, mean_df, on=column)
+            transformed_df = pd.merge(transformed_df, mean_df, on=column, how='left')
         return transformed_df
 
 
