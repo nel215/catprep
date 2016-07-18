@@ -27,7 +27,7 @@ def test_fit_and_blend():
     blender.fit(df, columns=x_columns, target='y')
     blended_df = blender.blend(df, columns=x_columns, target='y')
     assert blender.best_score < 1e-9
-    assert blender.best_param == {'n_estimators': 100, 'max_depth': 8}
+    assert blender.best_param == {'n_estimators': 10, 'max_depth': 8}
     assert blender.best_reg is not None
 
 

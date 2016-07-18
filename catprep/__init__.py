@@ -57,7 +57,7 @@ class Blender(object):
                     'n_estimators': n_estimators,
                     'max_depth': max_depth,
                 }
-                reg = ensemble.GradientBoostingRegressor(**param)
+                reg = ensemble.ExtraTreesRegressor(**param)
                 score = cross_validation.cross_val_score(reg, X, y, scoring='mean_squared_error', **self.cv_param)
                 if self.best_param is None or self.best_score < score.mean():
                     self.best_param = param
